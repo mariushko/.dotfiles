@@ -3,7 +3,7 @@
 #   name        = Gal Anonim
 #   email       = GalAnonim@mail
 [init]
-  defaultBranc = master
+  defaultBranch = master
 [core]
   editor      = vim
   pager       = less -FRX
