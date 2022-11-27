@@ -1,0 +1,78 @@
+# Ustaw swoje dane osobowe w osobnym pliku: ~/.gitconfig_private
+# [user]
+#   name        = Gal Anonim
+#   email       = GalAnonim@mail
+[init]
+  defaultBranc = master
+[core]
+  editor      = vim
+  pager       = less -FRX
+[merge]
+  tool        = vimdiff
+[push]
+  default     = current
+[pull]
+  ff          = true
+[alias]
+  br          = branch
+  ch          = checkout
+  la          = !git config -l | grep alias | cut -c 7- | sed 's/\t/ /g' | tr -s ' '
+  f           = !git ls-files
+  hi          = log --pretty=format:'%C(yellow)%h %C(green)%ad%Creset | %s%Cred%d%Creset %Cblue[%an]%Creset' --graph --date=short -n 30
+  ll          = log --pretty=format:'%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn]' --decorate --numstat
+  dlc         = diff --cached HEAD^
+  dc          = diff --cached
+  st          = status -s
+  stash-list  = stash list
+  stash-apply = stash apply
+  stash-save  = stash save
+  stash-drop  = stash drop
+  r           = reset HEAD
+  r-1         = reset HEAD^
+  r-2         = reset HEAD^^
+  rh          = reset --hard HEAD
+  rh-1        = reset --hard HEAD^
+  rh-2        = reset --hard HEAD^^
+  full-reset  = !/bin/bash -c \
+                'git fetch --all \
+                && git reset --hard HEAD \
+                && git clean -df \
+                && git pull \
+                && echo OK || echo ERROR \
+                ' -
+  welcome     = !/bin/bash -c \
+                'git fetch --all \
+                && git pull \
+                && echo OK || echo ERROR \
+                ' -
+  co          = !/bin/bash -c \
+                'git add -A \
+                && git commit -m \"$*\" \
+                && echo OK || echo ERROR \
+                ' -
+  co-edit     = "! \
+f() { \
+  behind=$(git log --format=%h origin/master..HEAD | wc -l); \
+  if [ $behind -eq 0 ]; then echo not behind enough; return 1; fi; \
+  git add -A && git commit --amend -m \"$*\" \
+  && echo OK || echo ERROR; \
+}; f"
+  co-add      = "! \
+f() { \
+  behind=$(git log --format=%h origin/master..HEAD | wc -l); \
+  if [ $behind -eq 0 ]; then echo not behind enough; return 1; fi; \
+  git add -A && git commit --amend --no-edit \
+  && echo OK || echo ERROR; \
+}; f"
+  co-squash-1 = "! \
+f() { \
+  behind=$(git log --format=%h origin/master..HEAD | wc -l); \
+  if [ $behind -lt 2 ]; then echo not behind enough; return 1; fi; \
+  msg=\"$(git log --format=%B HEAD~1..HEAD)\"; \
+  git reset --soft HEAD~2 && git commit -m \"$msg\" \
+  && echo OK || echo ERROR; \
+}; f"
+
+# W tym pliku ustaw indywidualną konfigurację
+[include]
+  path = ~/.gitconfig_private
