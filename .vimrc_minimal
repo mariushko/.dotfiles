@@ -1,6 +1,6 @@
 set nocompatible
 set t_Co=256
-colorscheme pablo
+" colorscheme pablo
 
 syntax on
 
@@ -10,6 +10,7 @@ set smartindent
 set hlsearch
 set nopaste
 set cursorcolumn
+hi CursorColumn ctermbg=black
 set backspace=indent,eol,start
 set tabstop=2
 set expandtab
