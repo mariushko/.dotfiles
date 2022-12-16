@@ -32,7 +32,7 @@ bind '-' split-window -v -c '#{pane_current_path}'
 
 # split okna w pionie
 unbind '"'
-bind '\' split-window -h -c '#{pane_current_path}'
+bind '|' split-window -h -c '#{pane_current_path}'
 
 # ma być cichutko...
 set -g visual-activity off
