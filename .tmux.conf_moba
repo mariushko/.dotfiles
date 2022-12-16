@@ -54,8 +54,8 @@ set -g status-left ''
 set -g status-right-length 50
 set -g status-right '#(id -un)@#(hostname -s) '
 
-setw -g window-status-format ' #I:#W#F'
-setw -g window-status-current-format ' [#I:#W#F]'
+setw -g window-status-format         '  #I:#W '
+setw -g window-status-current-format ' [#I:#W]'
 
 setw -g window-status-bell-style 'fg=colour255 bg=colour1 bold'
 
