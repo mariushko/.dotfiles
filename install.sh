@@ -35,7 +35,7 @@ echo
 }
 
 echo -n "Prompt Oh My Bash: "
-[[ -d ~/.oh-my-bash ]] && {
+[[ ! -d ~/.oh-my-bash ]] && {
   echo
   bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh | sed 's/exec bash.*$/exec bash -c true/')"
   sed -i 's/^OSH_THEME=.*$/OSH_THEME="morris"/' ~/.bashrc
