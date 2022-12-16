@@ -20,7 +20,7 @@ done
 echo -n "Konfiguracja lokalna GITa: "
 [[ ! -e ~/.gitconfig_private ]] && {
 
-cat <EOF > ~/.gitconfig_private
+cat <<EOF > ~/.gitconfig_private
 [user]
 #   name        = Gal Anonim
 #   email       = GalAnonim@mail
